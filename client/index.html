@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -18,22 +17,25 @@
     <!-- WELCOME FORM -->
     <form id="welcome-form" class="welcome-form show">
       <h2>Log in</h2>
-      <input class="text-input" type="text" id="username" placeholder="Type your name here">
+      <input class="text-input" type="text" id="username" placeholder="Type your name here" autocomplete="off">
       <button class="btn" type="submit">Join</button>
+      <h3 id="loginAlert"></h3>
     </form>
 
     <!-- MESSAGES SECTION -->
-    <section class="messages-section show" id="messages-section">
+    <section class="messages-section" id="messages-section">
       <h2>Messages</h2>
 
       <!-- messages list -->
       <ul class="messages-section__list" id="messages-list">
+        
         <li class="message">
           <h3 class="message__author">John Doe</h3>
           <div class="message__content">
             Hello!
           </div>
         </li>
+        
         <li class="message message--self">
             <h3 class="message__author">You</h3>
             <div class="message__content">
@@ -50,8 +52,9 @@
 
       <!-- messages form -->
       <form id="add-messages-form">
-        <input class="text-input" type="text" placeholder="Type your message here" id="message-content">
+        <input class="text-input" type="text" placeholder="Type your message here" id="message-content" autocomplete="off">
         <button class="btn" type="submit">Send</button>
+        <h3 id="messageAlert"></h3>
       </form>
 
     </section>

@@ -1,0 +1,8 @@
+{
+  "name": "33-Websocket-ChatApp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:MarcinBieniek/WebSocket-ChatApp.git",
+  "author": "Marcin Bieniek <marcingim@gmail.com>",
+  "license": "MIT"
+}
