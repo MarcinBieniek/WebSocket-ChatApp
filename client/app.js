@@ -22,7 +22,6 @@ const login = function(){
   if(userNameInput.value == ""){
     loginAlertText = "Please write your name";
   } else {
-    text = "";
     userName = userNameInput.value;
     loginForm.classList.remove("show");
     messagesSection.classList.add("show");
@@ -42,11 +41,13 @@ const sendMessage = function(){
   event.preventDefault();
   
   if(messageContentInput.value == ""){
-    messageAlertText == "Please, write a message";
+    messageAlertText = "Please, write a message";
   } else {
     addMessage(userName, messageContentInput.value);
     messageContentInput.value = "";
   }
+
+  messageAlrt.innerHTML = messageAlertText;
 }
 
 const addMessage = function(author, content){
