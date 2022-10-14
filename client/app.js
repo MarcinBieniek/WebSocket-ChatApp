@@ -1,3 +1,8 @@
+const socket = io();
+
+// socket listener
+socket.on('message', ({ author, content }) => addMessage(author, content))
+
 // chat elements 
 const loginForm = document.getElementById("welcome-form");
 const messagesSection = document.getElementById("messages-section");
@@ -16,7 +21,7 @@ let messageAlrt = document.getElementById("messageAlert");
 
 // login function
 
-const login = function(){
+const login = function(event){
   event.preventDefault();
   
   if(userNameInput.value == ""){
@@ -37,14 +42,18 @@ loginForm.addEventListener("submit", function(event){
 
 // send message function
 
-const sendMessage = function(){
+const sendMessage = function(event){
   event.preventDefault();
+
+  let messageContent = messageContentInput.value;
   
-  if(messageContentInput.value == ""){
+  if(messageContent == ""){
     messageAlertText = "Please, write a message";
   } else {
-    addMessage(userName, messageContentInput.value);
-    messageContentInput.value = "";
+    messageAlrt.innerHTML = "";
+    addMessage(userName, messageContent);
+    socket.emit('message', { author: userName, content: messageContent });
+    messageContent = "";   
   }
 
   messageAlrt.innerHTML = messageAlertText;
