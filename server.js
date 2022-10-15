@@ -4,7 +4,6 @@ const socket = require('socket.io');
 const db = require('./db.js');
 
 const app = express();
-let users = [];
 
 //middleware
 app.use(express.urlencoded ({ extended:false }));
@@ -37,7 +36,7 @@ io.on('connection', (socket) => {
   console.log('New client! Its id – ' + socket.id);
   
   socket.on('join', (userName) => {
-    users.push({ name: userName, id: socket.id });
+    db.users.push({ name: userName, id: socket.id });
     socket.broadcast.emit('message', {
       author: 'Chatbot',
       content: `<i>${userName} has joined the conversation!`,
@@ -51,9 +50,9 @@ io.on('connection', (socket) => {
   });
   
   socket.on('disconnect', () => { 
-    if (users.length > 0) {
-      userName = users.filter((user) => user.id === socket.id)[0].name;
-      users = users.filter((user) => user.id !== socket.id);
+    if (db.users.length > 0) {
+      userName = db.users.filter((user) => user.id === socket.id)[0].name;
+      db.users = db.users.filter((user) => user.id !== socket.id);
       socket.broadcast.emit('message', {
         author: 'Chatbot',
         content: `<i>${userName} has left the conversation...`,
@@ -62,6 +61,7 @@ io.on('connection', (socket) => {
    });
   console.log('I\'ve added a listener on message and disconnect events \n');
 });
+
 
 
 
